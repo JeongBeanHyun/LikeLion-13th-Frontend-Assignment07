@@ -11,3 +11,17 @@ export const fetchDailyBoxOffice = async (targetDt) => {
 
   return response.data.boxOfficeResult.dailyBoxOfficeList;
 };
+
+const BASE_URL_TMDB = "https://api.themoviedb.org/3/search/movie";
+const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
+export const searchMovies = async (query) => {
+  const re = await axios.get(`${BASE_URL_TMDB}`, {
+    params: {
+      api_key: TMDB_API_KEY,
+      query,
+      language: "ko-KR",
+    },
+  });
+  return re.data.results;
+};
